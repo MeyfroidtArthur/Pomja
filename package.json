@@ -6,7 +6,8 @@
     "dev": "tinacms dev -c \"bunx netlify dev\"",
     "dev:local": "tinacms dev -c \"astro dev\"",
     "netlify": "bun run build && bunx netlify deploy --prod",
-    "build": "tinacms build && astro build",
+    "build": "astro build",
+    "build:tina": "tinacms build && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
