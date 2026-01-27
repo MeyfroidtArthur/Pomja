@@ -1,6 +1,6 @@
 # example netlify.toml
 [build]
-  command = "bun run build"
+  command = "echo 'TINA_CLIENT_ID='$TINA_CLIENT_ID && node -e \"console.log('Has TINA_TOKEN:', !!process.env.TINA_TOKEN)\" && bun run build"
   functions = "netlify/functions"
   publish = "dist"
 
