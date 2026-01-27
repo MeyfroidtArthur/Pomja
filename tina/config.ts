@@ -10,10 +10,10 @@ const branch =
 export default defineConfig({
   branch,
 
-  // Get this from tina.io
-  clientId: process.env.TINA_CLIENT_ID,
-  // Get this from tina.io
-  token: process.env.TINA_TOKEN,
+  // Use local mode for development
+  // To enable cloud editing, uncomment these lines and configure TinaCMS Cloud properly:
+  // clientId: process.env.TINA_CLIENT_ID,
+  // token: process.env.TINA_TOKEN,
 
   build: {
     outputFolder: "admin",
