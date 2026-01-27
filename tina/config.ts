@@ -4,7 +4,7 @@ import { defineConfig } from "tinacms";
 const branch =
   process.env.NEXT_PUBLIC_TINA_BRANCH ||
   process.env.HEAD ||
-  "master";
+  "main";
 
 export default defineConfig({
   branch,
