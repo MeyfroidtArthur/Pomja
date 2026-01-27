@@ -2,7 +2,8 @@ import { defineConfig } from "tinacms";
 
 // Your hosting provider likely exposes this as an environment variable
 const branch =
-  process.env.NEXT_PUBLIC_TINA_BRANCH ||
+  process.env.GITHUB_BRANCH ||
+  process.env.VERCEL_GIT_COMMIT_REF ||
   process.env.HEAD ||
   "main";
 
@@ -10,7 +11,7 @@ export default defineConfig({
   branch,
 
   // Get this from tina.io
-  clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
+  clientId: process.env.TINA_CLIENT_ID,
   // Get this from tina.io
   token: process.env.TINA_TOKEN,
 
@@ -24,13 +25,14 @@ export default defineConfig({
       publicFolder: "public",
     },
   },
-  // See docs on content modeling for more info on how to setup new content models: https://tina.io/docs/r/content-modelling-collections/
+  // See docs on content modeling for more info on how to setup new content models: https://tina.io/docs/schema/
   schema: {
     collections: [
       {
         name: "blog",
         label: "Blog Posts",
         path: "src/content/blog",
+        format: "md",
         fields: [
           {
             type: "string",
@@ -43,13 +45,16 @@ export default defineConfig({
             type: "string",
             name: "description",
             label: "Description",
-            required: true,
           },
           {
             type: "datetime",
             name: "pubDate",
-            label: "Date Published",
-            required: true,
+            label: "Publication Date",
+          },
+          {
+            type: "datetime",
+            name: "updatedDate",
+            label: "Updated Date",
           },
           {
             type: "image",
