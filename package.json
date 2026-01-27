@@ -3,7 +3,9 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "tinacms dev -c \"astro dev\"",
+    "dev": "bunx netlify dev",
+    "dev:local": "tinacms dev -c \"astro dev\"",
+    "netlify": "bun run build && bunx netlify deploy --prod",
     "build": "tinacms build && astro build",
     "preview": "astro preview",
     "astro": "astro"

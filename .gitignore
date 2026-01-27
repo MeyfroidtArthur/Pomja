@@ -4,14 +4,15 @@ dist/
 .astro/
 
 # dependencies
-node_modules/
-
-# logs
+node_modules
+.astro
+dist
+.env
+.netlify
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
-
 
 # environment variables
 .env
