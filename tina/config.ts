@@ -8,35 +8,23 @@ const branch =
   process.env.HEAD ||
   "main";
 
-if (!process.env.TINA_CLIENT_ID) {
-  throw new Error("Missing required env var: TINA_CLIENT_ID");
-}
-
-if (!process.env.TINA_TOKEN) {
-  throw new Error("Missing required env var: TINA_TOKEN");
-}
-
 export default defineConfig({
   branch,
 
-  // From https://tina.io
-  clientId: process.env.TINA_CLIENT_ID,
-  // From https://tina.io
-  token: process.env.TINA_TOKEN,
+  // These must be set in Netlify env vars (build-time)
+  clientId: process.env.TINA_CLIENT_ID!,
+  token: process.env.TINA_TOKEN!,
 
   build: {
     outputFolder: "admin",
     publicFolder: "public",
   },
-
   media: {
     tina: {
       mediaRoot: "",
       publicFolder: "public",
     },
   },
-
-  // See docs on content modeling: https://tina.io/docs/schema/
   schema: {
     collections: [
       {
@@ -52,32 +40,11 @@ export default defineConfig({
             isTitle: true,
             required: true,
           },
-          {
-            type: "string",
-            name: "description",
-            label: "Description",
-          },
-          {
-            type: "datetime",
-            name: "pubDate",
-            label: "Publication Date",
-          },
-          {
-            type: "datetime",
-            name: "updatedDate",
-            label: "Updated Date",
-          },
-          {
-            type: "image",
-            name: "heroImage",
-            label: "Hero Image",
-          },
-          {
-            type: "rich-text",
-            name: "body",
-            label: "Body",
-            isBody: true,
-          },
+          { type: "string", name: "description", label: "Description" },
+          { type: "datetime", name: "pubDate", label: "Publication Date" },
+          { type: "datetime", name: "updatedDate", label: "Updated Date" },
+          { type: "image", name: "heroImage", label: "Hero Image" },
+          { type: "rich-text", name: "body", label: "Body", isBody: true },
         ],
       },
     ],
