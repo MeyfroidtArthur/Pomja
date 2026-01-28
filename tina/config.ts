@@ -1,31 +1,42 @@
 import { defineConfig } from "tinacms";
 
-// Your hosting provider likely exposes this as an environment variable
+// Netlify uses NETLIFY_BRANCH. Keep fallbacks for other providers/local.
 const branch =
+  process.env.NETLIFY_BRANCH ||
   process.env.GITHUB_BRANCH ||
   process.env.VERCEL_GIT_COMMIT_REF ||
   process.env.HEAD ||
   "main";
 
+if (!process.env.TINA_CLIENT_ID) {
+  throw new Error("Missing required env var: TINA_CLIENT_ID");
+}
+
+if (!process.env.TINA_TOKEN) {
+  throw new Error("Missing required env var: TINA_TOKEN");
+}
+
 export default defineConfig({
   branch,
 
-  // Get this from tina.io
+  // From https://tina.io
   clientId: process.env.TINA_CLIENT_ID,
-  // Get this from tina.io
+  // From https://tina.io
   token: process.env.TINA_TOKEN,
 
   build: {
     outputFolder: "admin",
     publicFolder: "public",
   },
+
   media: {
     tina: {
       mediaRoot: "",
       publicFolder: "public",
     },
   },
-  // See docs on content modeling for more info on how to setup new content models: https://tina.io/docs/schema/
+
+  // See docs on content modeling: https://tina.io/docs/schema/
   schema: {
     collections: [
       {
