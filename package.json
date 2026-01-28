@@ -6,7 +6,7 @@
     "dev": "tinacms dev -c \"bunx netlify dev\"",
     "dev:local": "tinacms dev -c \"astro dev\"",
     "netlify": "bun run build && bunx netlify deploy --prod",
-    "build": "tinacms build --skip-cloud-checks && astro build",
+    "build": "tinacms build --tina-graphql-version 2.1 && astro build",
     "build:tina": "tinacms build && astro build",
     "preview": "astro preview",
     "astro": "astro"
